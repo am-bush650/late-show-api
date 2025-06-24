@@ -110,7 +110,7 @@ GRANT ALL ON SCHEMA public TO late_show_user;
 
 5. Migration and seeding
 
-
+```
 bash
 
 export FLASK_APP=server/app.py
@@ -126,7 +126,7 @@ flask db upgrade
 
 *seed data*
 python -m server.seed
-
+```
 
 6. Testing
 
