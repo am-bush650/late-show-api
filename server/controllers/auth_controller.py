@@ -1,5 +1,5 @@
 from flask import Blueprint, request, jsonify
-from server.models.user import User
+from server.models import User
 from server.app import db
 from flask_jwt_extended import create_access_token
 
@@ -12,19 +12,19 @@ def register():
     data = request.get_json()
 
     #check if username already exists
-    if user.query.filter_by(username=data["username"]).first():
-        return jsonify(message="Username already taken"), 400
+    if User.query.filter_by(username=data["username"]).first():
+        return jsonify({"error": "Username already taken"}), 400
 
     #create user and hash password via the property setter
-    user = User(username=data["username"])
-    user.password = data["password"] #this triggers the @password.setter
+    new_user = User(username=data["username"])
+    new_user.password = data["password"] #this triggers the @password.setter
 
     #save to database
-    db.session.add(user)
+    db.session.add(new_user)
     db.session.commit()
 
 
-    return jsonify(message="User created"), 201
+    return jsonify(message="User created successfully"), 201
 
 
 # POST / lgin - authenticate and return JWT access token
