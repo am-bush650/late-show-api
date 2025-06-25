@@ -148,7 +148,7 @@ python -m server.seed
 
 ```
 ```
-2. /login
+2. /login - Log in and return JWT Token
 
 - method: POST
 - URL: http://127.0.0.1:5000/login
@@ -159,7 +159,7 @@ python -m server.seed
       "username":"user1",
       "password":"userpassword"
     }
-- Expected results
+- Expected results will contain jwt tokens
         {
           "access_token: "weoejdbdndksisjssbsbsnsn..."
         }
@@ -167,29 +167,63 @@ python -m server.seed
 
 ```  
 ```
-3. /episodes/<id>
+3. /episodes/<int:id> - Delete episode and appearances
 
 - method: DELETE
-- URL: http://127.0.0.1:5000/episodes/1
+- URL: http://127.0.0.1:5000/episodes/42
 - Headers:
     - content-type: application/json
     - authorization: Bearer token here...
+        - sending token in protected areas
+
+    - Body(raw - json)
+        {
+      "guest_id": 42,
+      "episode_id": 1,
+      "rating": 8.5
+    }
+```
+```
+4. /episodes/<int:id> - Get episodes and appearances
+
+- method: GET
+- URL: http://127.0.0.1:5000/episodes/43
+- Auth: None
+- Body - no body needed
+   
 ```
 
 ```
-4. /appearances
+5. /appearances - Create appearance
 
 - method: POST
 - URL: http://127.0.0.1:5000/appearances
 - Headers:
     - content-type: application/json
-
-  - sending token in protected areas
-    - authorization: Bearer token here....
+    - sending token in protected areas
+        - authorization: Bearer token here....
 - Body(raw - json)
     {
       "guest_id": 1,
       "episode_id": 1,
       "rating": 8.5
     }
+```
+```
+6. /episodes - list episodes
+
+- method: GET
+- URL: http://127.0.0.1:5000/episodes
+- Auth - none
+- Body - not needed
+```
+
+```
+7. /guests - List guests
+
+- method: GET
+- URL: http://127.0.0.1:5000/guests
+- Auth: None
+- Body - no body needed
+   
 ```
