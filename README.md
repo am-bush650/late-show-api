@@ -128,6 +128,68 @@ flask db upgrade
 python -m server.seed
 ```
 
-6. Testing
+---
 
-use postman or curl to test endpoints
+# Testing API's with postman
+
+```
+1. /register -register a user
+
+- method: POST
+- URL: http://127.0.0.1:5000/register
+- Headers:
+    - content-type: application/json
+- Body(raw - json)
+    {
+      "username":"user1",
+      "password":"userpassword"
+    }
+- Expected results HTTP 201 created or(200), user registered
+
+```
+```
+2. /login
+
+- method: POST
+- URL: http://127.0.0.1:5000/login
+- Headers:
+    - content-type: application/json
+- Body(raw - json)
+    {
+      "username":"user1",
+      "password":"userpassword"
+    }
+- Expected results
+        {
+          "access_token: "weoejdbdndksisjssbsbsnsn..."
+        }
+    - copy the token
+
+```  
+```
+3. /episodes/<id>
+
+- method: DELETE
+- URL: http://127.0.0.1:5000/episodes/1
+- Headers:
+    - content-type: application/json
+    - authorization: Bearer token here...
+```
+
+```
+4. /appearances
+
+- method: POST
+- URL: http://127.0.0.1:5000/appearances
+- Headers:
+    - content-type: application/json
+
+  - sending token in protected areas
+    - authorization: Bearer token here....
+- Body(raw - json)
+    {
+      "guest_id": 1,
+      "episode_id": 1,
+      "rating": 8.5
+    }
+```

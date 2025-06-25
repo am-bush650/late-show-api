@@ -10,7 +10,7 @@ episode_bp = Blueprint("episode", __name__)
 
 
 #GET / episode to return all episodes
-@episode_bp.route('/episode', methods=["GET"])
+@episode_bp.route('', methods=["GET"])
 def get_episodes():
 
     #query all episode records from database
@@ -24,7 +24,7 @@ def get_episodes():
 
 
 # GET / episodes / <id> return a specific episode with appearances
-@episode_bp.route('/episodes/<int:id>', methods=["GET"])
+@episode_bp.route('/<int:id>', methods=["GET"])
 def get_episode(id):
 
     #retrieve episode by id or return 404 if not found
@@ -53,7 +53,7 @@ def get_episode(id):
     }), 200
 
 # DELETE / episodes / <id> delete an episode jwt protected
-@episode_bp.route('/episodes/<int:id>', methods=["DELETE"])
+@episode_bp.route('/<int:id>', methods=["DELETE"])
 @jwt_required() #requires a valid jwt access token to access this route
 
 def delete_episode(id):

@@ -4,11 +4,11 @@ from server.app import db
 
 
 #create a blueprint for guest related routes
-guest_bp = Blueprint("guests", __name__)
+guest_bp = Blueprint("guest", __name__)
 
 
 # GET / guests - return all guest records
-@guest_bp.route('/guests', methods=["GET"])
+@guest_bp.route('', methods=["GET"])
 def get_guests():
 
     #query all guest records from the database
@@ -16,6 +16,10 @@ def get_guests():
 
     #serialize and return each guest as a dictionary
     return jsonify([
-        {"id": g.id, "name": g.name, "occupation": g.occupation}
+        {
+            "id": g.id,
+            "name": g.name, 
+            "occupation": g.occupation
+            }
         for g in guests
     ]), 200

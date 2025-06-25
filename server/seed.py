@@ -66,7 +66,7 @@ def seed():
             Episode(date="2024-06-02", number=2),
             Episode(date="2024-06-03", number=3),
             Episode(date="2024-06-04", number=4),
-            Episode(date="2024-06-05", number=5)
+            Episode(date="2024-06-05", number=6)
         ]
 
         #generate 5 additional episodes with random dates

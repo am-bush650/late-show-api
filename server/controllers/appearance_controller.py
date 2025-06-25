@@ -10,7 +10,7 @@ appearance_bp = Blueprint("appearances", __name__)
 
 
 # POST / appearances - create a new appearance
-@appearance_bp.route('/appearances', methods=["POST"])
+@appearance_bp.route('', methods=["POST"])
 @jwt_required()
 def create_appearance():
 
@@ -47,3 +47,21 @@ def create_appearance():
         "episode_id": appearance.episode_id,
         "rating": appearance.rating
     }), 201
+
+# route to handle get requests for handling all appearances
+@appearance_bp.route('', methods=["GET"])
+def get_appearances():
+    #query the db to retrieve all appearance records
+    appearances = Appearance.query.all()
+
+    # convert each appearance obj into a dict for json response
+    return jsonify([
+        {
+            "id": a.id, #unique id of the appearance
+            "guest_id": a.guest_id, #id of guest who appeared
+            "episode_id": a.episode_id, #id of the episode where the guest appeared
+            "rating": a.rating #rating given for the guest appearance
+        }
+        for a in appearances 
+        
+    ]), 200
