@@ -57,7 +57,7 @@ A Restful API for managing a late night show that comprises of guests, episodes,
 |──────.env
 |──────pipfile
 |──────README.md
-|──────
+|────── late-show-postman.postman_collection.json
 
 ```
 ---
